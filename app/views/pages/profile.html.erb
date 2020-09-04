@@ -1,0 +1,11 @@
+<h1>This is the profile page</h1>
+
+<p><%= current_user.email %></p>
+
+<% if current_user.photo.attached? %>
+  <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+  <p>No photo yet</p>
+<% end %>
+
+<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary"  %>
