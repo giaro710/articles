@@ -22,4 +22,11 @@ class User < ApplicationRecord
   # returns an array of other users who the user has followed -- i seguiti dallo user
   has_many :followings, through: :given_follows, source: :followed_user
 
+
+  ### VALIDATIONS #################################################################################
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+
 end

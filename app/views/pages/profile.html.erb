@@ -1,5 +1,7 @@
 <h1>This is the profile page</h1>
 
+<p><%= current_user.first_name %></p>
+<p><%= current_user.last_name %></p>
 <p><%= current_user.email %></p>
 
 <% if current_user.photo.attached? %>
