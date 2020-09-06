@@ -1,11 +1,18 @@
 <h1>All Posts</h1>
 
+<%= link_to "New post", new_post_path, class: "btn btn-primary"  %>
+<br><br><br>
+
+
 <% @posts.each do |post|%>
+  <hr>
 
   <div class="post">
     <h5> <%= post.user.first_name %>  <%= post.user.last_name %></h5>
-    <h3><%= post.title%> </h3>
+    <h3> <%= link_to post.title, post_path(post) %>  </h3>
+
     <p> <%= post.content %> </p>
   </div>
 
+  <hr>
 <% end %>

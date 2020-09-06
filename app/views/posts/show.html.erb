@@ -1,5 +1,19 @@
 <h1> <%= @post.title %>  </h1>
 
-<h5>A post made by <%= post.user.first_name %>  <%= post.user.last_name %></h5>
+<h5>A post made by <%= @post.user.first_name %>  <%= @post.user.last_name %></h5>
 
-<p> <%= post.content %> </p>
+<p> <%= @post.content %> </p>
+
+
+
+<div class="buttons">
+  <%= link_to "Modify", edit_post_path, class: "btn btn-success"  %>
+  <%= link_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger"  %>
+</div>
+
+
+
+
+
+
+<%= link_to "< Back", posts_path, class: "btn btn-secondary"  %>

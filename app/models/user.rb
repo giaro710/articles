@@ -6,7 +6,12 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
-  #### Followers e Seguiti
+  has_many :posts
+
+
+
+
+  #### Followers e Seguiti #################################################################################
 
   # Will return an array of follows for the given user instance --- follows generici che devono esere scremati nel prosimo passaggio
   has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow"

@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.all
   end
 
   def my_board
-    @posts = current_user.posts.all
+    @posts = @user.posts
   end
 
   def show
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
+    @post.user = @user
 
     if @post.save
       redirect_to posts_path
@@ -32,19 +33,25 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update
-      redirect_to posts_path
+    # raise
+    if @post.update(post_params)
+      redirect_to @post, notice: 'The post was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
+    # raise
     @post.destroy
     redirect_to posts_path
   end
 
   private
+
+  def set_user
+    @user = current_user
+  end
 
   def set_post
     @post = Post.find(params[:id])
