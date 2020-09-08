@@ -7,8 +7,16 @@
 
 
 <div class="buttons">
-  <%= link_to "Modify", edit_post_path, class: "btn btn-success"  %>
-  <%= link_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger"  %>
+  <% if policy(@post).edit? %>
+    <%= link_to "Modify", edit_post_path, class: "btn btn-success"  %>
+  <% end %>
+
+  <% if policy(@post).destroy? %>
+    <%= link_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger"  %>
+  <% end %>
+
+
+
 </div>
 
 
