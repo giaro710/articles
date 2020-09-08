@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  get "/my_board", to: 'posts#my_board'
+  get "/user_board", to: 'posts#user_board'
 end

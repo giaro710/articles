@@ -4,11 +4,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = policy_scope(Post)
   end
 
-  def my_board
+  def user_board
     @posts = @user.posts
+    authorize @posts
   end
 
   def show
@@ -16,11 +17,13 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = @user
+    authorize @post
 
     if @post.save
       redirect_to posts_path
@@ -55,6 +58,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+    authorize @post
   end
 
   def post_params
